@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 
@@ -12,7 +12,7 @@ function App() {
     e.preventDefault()
     setLoading(true)
 
-    const response = await fetch('http://127.0.0.1:5000/', {
+    const response = await fetch('https://aiaiai-zfg6.onrender.com/', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -28,7 +28,15 @@ function App() {
       console.error('Error:', response.statusText);
     }
     setLoading(false)
+
+    const check = await fetch('https://aiaiai-zfg6.onrender.com/check')
+
+
+    console.log(check)
   }
+
+
+
 
   return (
     <div style={{ backgroundColor: color }} className="trasition-all duration-500 text-white flex flex-col items-center justify-center h-screen">
@@ -46,8 +54,8 @@ function App() {
 
       <p>{color}</p>
 
-      <p className='mt-10'>The answers are from an LLM called "mistral". Its a free API and the output might be inconsistent</p>
-      <p className=''>Hit submit again if it keeps loading</p>
+      <p className='mt-10 text-center'>The answers are from an LLM called "mistral". Its a free API and the output might be inconsistent.</p>
+      <p className='mt-5'>Hit submit again if it keeps loading</p>
 
     </div>
 
